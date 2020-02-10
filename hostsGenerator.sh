@@ -15,15 +15,15 @@
 if [ $1 == 'a' ]; then
 
  echo 'Creating apache conf file'
- cp ./default.conf /etc/apache2/sites-enabled/$2.acoulombe.conf
+ cp ./default.conf /etc/apache2/sites-enabled/$2.$USER.conf
  cd /etc/apache2/sites-enabled
 
  # Creating and replacing apache2 conf file
- sed -i 's,domain.local,'"$2"'.local,g' $2.acoulombe.conf
- sed -i 's,/home/acoulombe/vhosts/src-directory,'"$3"',g' $2.acoulombe.conf
- sed -i 's,/home/acoulombe/ssl/domain.local.pem,/home/acoulombe/ssl/'"$2"'.local.pem,g' $2.acoulombe.conf
- sed -i 's,/home/acoulombe/ssl/domain.local-key.pem,/home/acoulombe/ssl/'"$2"'.local-key.pem,g' $2.acoulombe.conf
- sed -i 's,/run/php/php5.6,/run/php/php'"$4"',g' $2.acoulombe.conf
+ sed -i 's,domain.local,'"$2"'.local,g' $2.$USER.conf
+ sed -i 's,/home/acoulombe/vhosts/src-directory,'"$3"',g' $2.$USER.conf
+ sed -i 's,/home/acoulombe/ssl/domain.local.pem,/home/'"$USER"'/ssl/'"$2"'.local.pem,g' $2.$USER.conf
+ sed -i 's,/home/acoulombe/ssl/domain.local-key.pem,/home/'"$USER"'/ssl/'"$2"'.local-key.pem,g' $2.$USER.conf
+ sed -i 's,/run/php/php5.6,/run/php/php'"$4"',g' $2.$USER.conf
 
  # Creating ssl
  echo 'Creating SSL files'
@@ -53,7 +53,7 @@ if [ $1 == 'r' ]; then
  # Remove apache2 conf
  echo 'Removing apache conf files'
  cd /etc/apache2/sites-enabled
- rm $2.acoulombe.conf
+ rm $2.$USER.conf
 
  # Remove apache2 log files
  echo 'Removing apache log files'
