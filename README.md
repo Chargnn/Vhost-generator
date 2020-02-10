@@ -15,4 +15,6 @@ To remove
 
 To update ssl keys
 
-./hostsGenerator.sh ssh
+./hostsGenerator.sh ssh test
+
+Will remove then add all keys for **test** vhost
